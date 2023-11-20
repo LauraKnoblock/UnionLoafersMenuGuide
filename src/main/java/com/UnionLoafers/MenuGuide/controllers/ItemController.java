@@ -20,4 +20,8 @@ public class ItemController {
     model.addAttribute("items", items);
             return "items/index";
   }
+  @GetMapping("create")
+  public String renderCreateItem() {
+    return "items/create";
+  }
 }
