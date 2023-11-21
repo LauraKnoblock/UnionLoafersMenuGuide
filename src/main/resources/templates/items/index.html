@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymyleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
+<head th:replace="fragments :: head">
 </head>
-<body>
+<body class="container">
+<nav th:replace="fragments :: navigation">
+</nav>
 <p th:unless="${items} and ${items.size()}">No items!</p>
-    <ul>
-        <th:block th:each="item : ${items}">
-            <li th:text="${item}"></li>
-        </th:block>
-    </ul>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tr th:block th:each="item : ${items}">
+            <li th:text="${item.name}"></li>
+        </tr>
+    </table>
 </body>
 </html>

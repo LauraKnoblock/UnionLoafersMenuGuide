@@ -1,6 +1,7 @@
 package com.UnionLoafers.MenuGuide.controllers;
 
 
+import com.UnionLoafers.MenuGuide.models.Item;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +16,11 @@ import java.util.List;
 @RequestMapping("items")
 public class ItemController {
 
-  private static List<String> items = new ArrayList<>();
+  private static List<Item> items = new ArrayList<>();
 
   @GetMapping
   public String  displayAllItems(Model model) {
+    model.addAttribute("title", "All Items");
     model.addAttribute("items", items);
             return "items/index";
   }
@@ -28,8 +30,10 @@ public class ItemController {
   }
 
   @PostMapping("create")
-  public String createItem(@RequestParam String itemName) {
-    items.add(itemName);
+  public String createItem(@RequestParam String itemName, String itemDesc) {
+
+    items.add(new Item(itemName));
+    items.add(new Item(itemDesc));
     return "redirect:/items";
   }
 }

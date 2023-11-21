@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymyleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
+<head th:replace="fragments :: head">
 </head>
 <body>
 <h1>Menu Items</h1>
-<nav>
-    <ul>
-        <li> <a href ="/items"> All Items</a></li>
-    </ul>
+<nav th:replace="fragments :: navigation">
 </nav>
 </body>
 </html>
