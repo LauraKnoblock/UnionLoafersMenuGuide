@@ -1,6 +1,7 @@
 package com.UnionLoafers.MenuGuide.controllers;
 
 
+import com.UnionLoafers.MenuGuide.data.ItemData;
 import com.UnionLoafers.MenuGuide.models.Item;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +17,11 @@ import java.util.List;
 @RequestMapping("items")
 public class ItemController {
 
-  private static List<Item> items = new ArrayList<>();
 
   @GetMapping
   public String  displayAllItems(Model model) {
     model.addAttribute("title", "All Items");
-    model.addAttribute("items", items);
+    model.addAttribute("items", ItemData.getAll());
             return "items/index";
   }
   @GetMapping("create")
@@ -32,7 +32,24 @@ public class ItemController {
   @PostMapping("create")
   public String createItem(@RequestParam String itemName, @RequestParam String itemDesc) {
 
-    items.add(new Item(itemName, itemDesc));
+    ItemData.add(new Item(itemName, itemDesc));
+    return "redirect:/items";
+  }
+
+  @GetMapping("/delete")
+  public String displayDeleteItemForm(Model model) {
+    model.addAttribute("title", "Delete Items");
+    model.addAttribute("items", ItemData.getAll());
+    return "/items/delete";
+  }
+
+  @PostMapping("delete")
+  public String processDeleteItemForm(@RequestParam(required = false) int[] itemIds) {
+    if (itemIds != null) {
+    for (int id: itemIds) {
+      ItemData.remove(id);
+      }
+    }
     return "redirect:/items";
   }
 }

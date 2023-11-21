@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymyleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+
+<form method="post">
+
+        <th:block th:each="item : ${items}">
+            <div class="form-group">
+        <label>
+            <span th:text="${item.name}"></span>
+            <input type="checkbox" name="itemIds" th:value="${item.id}" class="form-control">
+        </label>
+            </div>
+        </th:block>
+
+    <input type="submit" value="Delete" class="btn btn-danger">
+</form>
+</body>
+</html>
