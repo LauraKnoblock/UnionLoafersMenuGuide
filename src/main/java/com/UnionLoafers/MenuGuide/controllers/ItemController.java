@@ -30,10 +30,9 @@ public class ItemController {
   }
 
   @PostMapping("create")
-  public String createItem(@RequestParam String itemName, String itemDesc) {
+  public String createItem(@RequestParam String itemName, @RequestParam String itemDesc) {
 
-    items.add(new Item(itemName));
-    items.add(new Item(itemDesc));
+    items.add(new Item(itemName, itemDesc));
     return "redirect:/items";
   }
 }

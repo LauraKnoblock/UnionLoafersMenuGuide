@@ -1,10 +1,19 @@
 package com.UnionLoafers.MenuGuide.models;
 
-public class Item {
-  private String name;
+import java.util.Objects;
 
-  public Item(String name) {
+public class Item {
+
+  private int id;
+  private static int nextId = 1;
+  private String name;
+  private String desc;
+
+  public Item(String name, String desc) {
     this.name = name;
+    this.desc = desc;
+    this.id = nextId;
+    nextId++;
   }
 
   public String getName() {
@@ -15,8 +24,34 @@ public class Item {
     this.name = name;
   }
 
+
   @Override
   public String toString() {
     return name;
+  }
+
+  public String getDesc() {
+    return desc;
+  }
+
+  public void setDesc(String desc) {
+    this.desc = desc;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Item item = (Item) o;
+    return id == item.id;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
   }
 }
