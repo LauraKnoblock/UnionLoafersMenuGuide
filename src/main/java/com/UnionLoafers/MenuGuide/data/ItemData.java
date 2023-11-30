@@ -27,7 +27,9 @@ public class ItemData {
   }
 
   // remove an event
-public static void remove(int id) {
+
+
+  public static void remove(int id) {
     items.remove(id);
-}
+  }
 }

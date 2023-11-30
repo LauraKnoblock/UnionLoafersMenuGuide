@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+
+<h1>Edit Item</h1>
+<nav th:replace="fragments :: navigation">
+</nav>
+<form method="post" action="/items/edit/{id}" th:object="${item}">
+    <input type="hidden" th:field="*{id}" />
+    <div class="form-group">
+        <label>Name
+            <input type="text" th:field="*{name}">
+        </label>
+        <label>Description
+            <input type="text" th:field="*{desc}">
+        </label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Edit Item" class="btn btn-success">
+    </div>
+</form>
+</body>
+</html>

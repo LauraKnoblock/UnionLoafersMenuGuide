@@ -18,6 +18,9 @@
             <td th:text="${item.id}"></td>
             <td th:text="${item.name}"></td>
             <td th:text="${item.desc}"></td>
+            <td>
+                <a th:href="@{/items/edit/{id}(id=${item.id})}">Edit</a>
+            </td>
         </tr>
     </table>
 </body>

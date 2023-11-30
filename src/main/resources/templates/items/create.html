@@ -10,12 +10,22 @@
 <form method="post" action="/items/create">
     <div class="form-group">
         <label>Name
-    <input type="text" name="itemName">
+    <input type="text" name="name">
         </label>
         <label>Description
-            <input type="text" name="itemDesc">
+            <input type="text" name="desc">
         </label>
     </div>
+<!--    <div class="form-group">-->
+<!--        <label>Type-->
+<!--        <select th:field="${item.type}">-->
+<!--            <option th:each="type : ${types}"-->
+<!--                    th:value="${type}"-->
+<!--                    th:text="${type.displayName}">-->
+<!--            </option>-->
+<!--        </select>-->
+<!--        </label>-->
+<!--    </div>-->
     <div class="form-group">
     <input type="submit" value="Create Item" class="btn btn-success">
     </div>
