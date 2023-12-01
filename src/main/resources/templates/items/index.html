@@ -16,6 +16,7 @@
         </thead>
         <tr th:block th:each="item : ${items}">
             <td th:text="${item.id}"></td>
+            <td th:text="${item.type.displayName}"></td>
             <td th:text="${item.name}"></td>
             <td th:text="${item.desc}"></td>
             <td>

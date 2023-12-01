@@ -1,26 +1,34 @@
 package com.UnionLoafers.MenuGuide.models;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 import java.util.Objects;
 
+@Entity
 public class Item {
 
+  @Id
+  @GeneratedValue
   private int id;
-  private static int nextId = 1;
-
+  @NotBlank(message = "Name is required")
+  @Size(min = 3, max = 50, message = "name must be between 3 and 50 characters")
   private String name;
+  @Column(name="description")
+  @Size(max = 500, message = "Description is too long!")
   private String desc;
   private ItemType type;
 
   public Item(String name, String desc, ItemType type) {
     this.name = name;
     this.desc = desc;
-    this.id = nextId;
     this.type = type;
-    nextId++;
   }
 
   public Item() {
-    this.id = nextId;
-    nextId++;
   }
 
   public String getName() {

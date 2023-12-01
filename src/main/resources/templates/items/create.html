@@ -12,20 +12,22 @@
         <label>Name
     <input type="text" name="name">
         </label>
+        <p class="error" th:errors="${item.name}"></p>
         <label>Description
-            <input type="text" name="desc">
+            <input type="text" name="desc" >
+        </label>
+        <p class="error" th:errors="${item.desc}"></p>
+    </div>
+    <div class="form-group">
+        <label>Type
+        <select th:field="${item.type}">
+            <option th:each="type : ${types}"
+                    th:value="${type}"
+                    th:text="${type.displayName}">
+            </option>
+        </select>
         </label>
     </div>
-<!--    <div class="form-group">-->
-<!--        <label>Type-->
-<!--        <select th:field="${item.type}">-->
-<!--            <option th:each="type : ${types}"-->
-<!--                    th:value="${type}"-->
-<!--                    th:text="${type.displayName}">-->
-<!--            </option>-->
-<!--        </select>-->
-<!--        </label>-->
-<!--    </div>-->
     <div class="form-group">
     <input type="submit" value="Create Item" class="btn btn-success">
     </div>
