@@ -2,8 +2,10 @@ package com.UnionLoafers.MenuGuide.controllers;
 
 
 import com.UnionLoafers.MenuGuide.data.ItemData;
+import com.UnionLoafers.MenuGuide.data.ItemRepository;
 import com.UnionLoafers.MenuGuide.models.Item;
 import com.UnionLoafers.MenuGuide.models.ItemType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +16,13 @@ import java.util.List;
 @Controller
 @RequestMapping("items")
 public class ItemController {
-
-
+  @Autowired
+  private ItemRepository itemRepository;
+// findAll, save, findById
   @GetMapping
   public String  displayAllItems(Model model) {
     model.addAttribute("title", "All Items");
-    model.addAttribute("items", ItemData.getAll());
+    model.addAttribute("items", itemRepository.findAll());
             return "items/index";
   }
   @GetMapping("create")
@@ -32,14 +35,14 @@ public class ItemController {
 
   @PostMapping("create")
   public String processCreateItemForm(@ModelAttribute Item newItem) {
-    ItemData.add(newItem);
+    itemRepository.save(newItem);
     return "redirect:/items";
   }
 
   @GetMapping("delete")
   public String displayDeleteItemForm(Model model) {
     model.addAttribute("title", "Delete Items");
-    model.addAttribute("items", ItemData.getAll());
+    model.addAttribute("items", itemRepository.findAll());
     return "items/delete";
   }
 
@@ -47,7 +50,7 @@ public class ItemController {
   public String processDeleteItemForm(@RequestParam(required = false) int[] itemIds) {
     if (itemIds != null) {
     for (int id: itemIds) {
-      ItemData.remove(id);
+      itemRepository.deleteById(id);
       }
     }
     return "redirect:/items";
