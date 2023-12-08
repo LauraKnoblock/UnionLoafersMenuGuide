@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("items")
@@ -57,25 +58,36 @@ public class ItemController {
   }
 
   @GetMapping("edit/{itemId}")
-  public String displayEditForm(Model model, @PathVariable int itemId){
-    Item itemToEdit = ItemData.getById(itemId);
+  public String displayEditForm(Model model, @PathVariable int itemId) {
+    Optional<Item> optionalItem = itemRepository.findById(itemId);
 
-    model.addAttribute("item", itemToEdit);
-    model.addAttribute("itemId", itemId);
+    if (optionalItem.isPresent()) {
+      Item itemToEdit = optionalItem.get();
 
-    String title = "Edit Item " + itemToEdit.getName() + " (id=" + itemToEdit.getId() + ")";
-    model.addAttribute("title", title);
+      model.addAttribute("item", itemToEdit);
+      model.addAttribute("itemId", itemId);
 
-    return "items/edit";
-  }
+      String title = "Edit Item " + itemToEdit.getName() + " (id=" + itemToEdit.getId() + ")";
+      model.addAttribute("title", title);
+    }
+      return "items/edit";
+    }
+
+
 
   @PostMapping("edit/{id}")
-  public String processEditForm(int id, String name, String desc) {
-    Item itemToEdit = ItemData.getById(id);
-    if (itemToEdit != null) {
+  public String processEditForm(@PathVariable("id") int id, String name, String desc) {
+    Optional<Item> optionalItem = itemRepository.findById(id);
+
+    if (optionalItem.isPresent()) {
+      Item itemToEdit = optionalItem.get();
       itemToEdit.setName(name);
       itemToEdit.setDesc(desc);
+
+      // Save the changes back to the database
+      itemRepository.save(itemToEdit);
     }
+
     return "redirect:/items";
   }
 }

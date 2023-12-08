@@ -7,7 +7,7 @@
 <h1>Edit Item</h1>
 <nav th:replace="fragments :: navigation">
 </nav>
-<form method="post" action="/items/edit/{id}" th:object="${item}">
+<form method="post" th:action="@{'/items/edit/' + ${item.id}}" th:object="${item}">
     <input type="hidden" th:field="*{id}" />
     <div class="form-group">
         <label>Name
