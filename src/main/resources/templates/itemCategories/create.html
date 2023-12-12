@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymyleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+
+<h1>Create Item</h1>
+<nav th:replace="fragments :: navigation">
+</nav>
+<form method="post" action="/itemCategories/create">
+    <div class="form-group">
+        <label>Category Name
+            <input type="text" name="name">
+        </label>
+        <p class="error" th:errors="${itemCategory.name}"></p>
+        </label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create Category" class="btn btn-success">
+    </div>
+</form>
+</body>
+</html>
