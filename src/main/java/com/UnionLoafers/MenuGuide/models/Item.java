@@ -1,23 +1,17 @@
 package com.UnionLoafers.MenuGuide.models;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import java.util.Objects;
-
 @Entity
-public class Item {
+public class Item extends AbstractEntity {
 
-  @Id
-  @GeneratedValue
-  private int id;
   @NotBlank(message = "Name is required")
   @Size(min = 3, max = 50, message = "name must be between 3 and 50 characters")
   private String name;
-  @Column(name="description")
+  @Column(name = "description")
   @Size(max = 500, message = "Description is too long!")
   private String desc;
   private ItemType type;
@@ -53,9 +47,6 @@ public class Item {
     this.desc = desc;
   }
 
-  public int getId() {
-    return id;
-  }
 
   public ItemType getType() {
     return type;
@@ -65,16 +56,4 @@ public class Item {
     this.type = type;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Item item = (Item) o;
-    return id == item.id;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id);
-  }
 }
