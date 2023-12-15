@@ -5,6 +5,7 @@ import com.UnionLoafers.MenuGuide.data.ItemCategoryRepository;
 import com.UnionLoafers.MenuGuide.data.ItemData;
 import com.UnionLoafers.MenuGuide.data.ItemRepository;
 import com.UnionLoafers.MenuGuide.models.Item;
+import com.UnionLoafers.MenuGuide.models.ItemCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,10 +25,22 @@ public class ItemController {
   private ItemCategoryRepository itemCategoryRepository;
 // findAll, save, findById
   @GetMapping
-  public String  displayAllItems(Model model) {
-    model.addAttribute("title", "All Items");
-    model.addAttribute("items", itemRepository.findAll());
-            return "items/index";
+  public String  displayAllItems(@RequestParam(required = false) Integer categoryId, Model model) {
+
+   if (categoryId == null) {
+     model.addAttribute("title", "All Items");
+     model.addAttribute("items", itemRepository.findAll());
+     } else {
+     Optional<ItemCategory> result = itemCategoryRepository.findById(categoryId);
+     if (result.isEmpty()) {
+       model.addAttribute("title", "Invalid Category ID: " + categoryId);
+     } else {
+       ItemCategory category = result.get();
+       model.addAttribute("title", "Items in category: " + category.getName());
+       model.addAttribute("items", category.getItems());
+     }
+   }
+        return "items/index";
   }
   @GetMapping("create")
   public String displayCreateItemForm(Model model) {
