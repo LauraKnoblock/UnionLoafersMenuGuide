@@ -1,10 +1,10 @@
 package com.UnionLoafers.MenuGuide.controllers;
 
 
+import com.UnionLoafers.MenuGuide.data.ItemCategoryRepository;
 import com.UnionLoafers.MenuGuide.data.ItemData;
 import com.UnionLoafers.MenuGuide.data.ItemRepository;
 import com.UnionLoafers.MenuGuide.models.Item;
-import com.UnionLoafers.MenuGuide.models.ItemType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +19,9 @@ import java.util.Optional;
 public class ItemController {
   @Autowired
   private ItemRepository itemRepository;
+
+  @Autowired
+  private ItemCategoryRepository itemCategoryRepository;
 // findAll, save, findById
   @GetMapping
   public String  displayAllItems(Model model) {
@@ -30,7 +33,7 @@ public class ItemController {
   public String displayCreateItemForm(Model model) {
     model.addAttribute("title", "Create Item");
     model.addAttribute(new Item());
-    model.addAttribute("types", ItemType.values());
+    model.addAttribute("categories", itemCategoryRepository.findAll());
     return "items/create";
   }
 

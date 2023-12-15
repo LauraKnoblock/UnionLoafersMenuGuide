@@ -20,10 +20,10 @@
     </div>
     <div class="form-group">
         <label>Type
-        <select th:field="${item.type}">
-            <option th:each="type : ${types}"
-                    th:value="${type}"
-                    th:text="${type.displayName}">
+        <select th:field="${item.itemCategory}">
+            <option th:each="itemCategory : ${categories}"
+                    th:value="${itemCategory.id}"
+                    th:text="${itemCategory.name}">
             </option>
         </select>
         </label>

@@ -2,7 +2,9 @@ package com.UnionLoafers.MenuGuide.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -14,12 +16,15 @@ public class Item extends AbstractEntity {
   @Column(name = "description")
   @Size(max = 500, message = "Description is too long!")
   private String desc;
-  private ItemType type;
 
-  public Item(String name, String desc, ItemType type) {
+  @ManyToOne
+  @NotNull(message = "Category is required")
+  private ItemCategory itemCategory;
+
+  public Item(String name, String desc, ItemCategory itemCategory) {
     this.name = name;
     this.desc = desc;
-    this.type = type;
+    this.itemCategory = itemCategory;
   }
 
   public Item() {
@@ -47,13 +52,11 @@ public class Item extends AbstractEntity {
     this.desc = desc;
   }
 
-
-  public ItemType getType() {
-    return type;
+  public ItemCategory getItemCategory() {
+    return itemCategory;
   }
 
-  public void setType(ItemType type) {
-    this.type = type;
+  public void setItemCategory(ItemCategory itemCategory) {
+    this.itemCategory = itemCategory;
   }
-
 }
