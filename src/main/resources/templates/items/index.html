@@ -5,25 +5,22 @@
 <body class="container">
 <nav th:replace="fragments :: navigation">
 </nav>
+<form th:action="@{/items}" method="get" class="search-form">
+    <input type="text" name="search" placeholder="Search...">
+    <button type="submit">Search</button>
+</form>
 <p th:unless="${items} and ${items.size()}">No items!</p>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Category</th>
-            <th>Name</th>
-            <th>Description</th>
-        </tr>
-        </thead>
-        <tr th:block th:each="item : ${items}">
-            <td th:text="${item.id}"></td>
-            <td th:text="${item.itemCategory.name}"></td>
-            <td th:text="${item.name}"></td>
-            <td th:text="${item.desc}"></td>
-            <td>
-                <a th:href="@{/items/edit/{id}(id=${item.id})}">Edit</a>
-            </td>
-        </tr>
-    </table>
+
+<div th:each="item : ${items}" class="item-container">
+    <div class="item-details">
+        <p>Name: <span th:text="${item.name}"></span></p>
+        <p>Category: <span th:text="${item.itemCategory.name}"></span></p>
+        <p>Description: <span th:text="${item.desc}"></span></p>
+    </div>
+    <div class="item-actions">
+        <a th:href="@{/items/edit/{id}(id=${item.id})}">Edit</a>
+    </div>
+</div>
+
 </body>
 </html>

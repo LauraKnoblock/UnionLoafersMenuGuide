@@ -25,22 +25,38 @@ public class ItemController {
   private ItemCategoryRepository itemCategoryRepository;
 // findAll, save, findById
   @GetMapping
-  public String  displayAllItems(@RequestParam(required = false) Integer categoryId, Model model) {
+  public String displayAllItems(@RequestParam(required = false) Integer categoryId,
+                                @RequestParam(required = false) String search,
+                                Model model) {
 
-   if (categoryId == null) {
-     model.addAttribute("title", "All Items");
-     model.addAttribute("items", itemRepository.findAll());
-     } else {
-     Optional<ItemCategory> result = itemCategoryRepository.findById(categoryId);
-     if (result.isEmpty()) {
-       model.addAttribute("title", "Invalid Category ID: " + categoryId);
-     } else {
-       ItemCategory category = result.get();
-       model.addAttribute("title", "Items in category: " + category.getName());
-       model.addAttribute("items", category.getItems());
-     }
-   }
-        return "items/index";
+    List<Item> items;
+
+    if (categoryId == null) {
+      model.addAttribute("title", "All Items");
+
+      if (search != null && !search.isEmpty()) {
+        // If search query is present, filter items based on the search query
+        items = itemRepository.findItemsByNameContainingIgnoreCase(search);
+        model.addAttribute("title", "Search Results for: " + search);
+      } else {
+        // If no search query, get all items
+        items = (List<Item>) itemRepository.findAll();
+      }
+    } else {
+      Optional<ItemCategory> result = itemCategoryRepository.findById(categoryId);
+      if (result.isEmpty()) {
+        model.addAttribute("title", "Invalid Category ID: " + categoryId);
+        return "items/index"; // Return early if invalid category ID
+      } else {
+        ItemCategory category = result.get();
+        model.addAttribute("title", "Items in category: " + category.getName());
+        model.addAttribute("items", category.getItems());
+        return "items/index"; // Return early for category view
+      }
+    }
+
+    model.addAttribute("items", items);
+    return "items/index";
   }
   @GetMapping("create")
   public String displayCreateItemForm(Model model) {

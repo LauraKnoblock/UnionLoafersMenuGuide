@@ -1,6 +1,23 @@
 body {
-font-size: 18px;
-color: skyblue;
-background-color: ghostwhite;
-font-family: Tahoma, sans-serif;
+font-size: 14px;
+color: #232434;
+background-color: #232434;
+font-family: Arial,Helvetica,sans-serif;
+justify-content: center;
+margin-top: 30px;
+}
+.item-container {
+            border: 1px solid #ddd; /* Add your desired border style */
+            margin: 10px; /* Optional: Add space between containers */
+            border-radius: 10px;
+            padding: 10px; /* Optional: Add padding inside the container */
+            background: url("https://img.freepik.com/free-photo/sepia-plasterboard-texture_95678-419.jpg?w=996&t=st=1704297129~exp=1704297729~hmac=c11d53cfca38b660c2995bd1fa43a5fcc0a86cb700e145315d42148569851354");
+            display: inline-block;
+            box-sizing: border-box;
+            width: calc(33.33% - 20px);
+        }
+
+.nav {
+margin-bottom: 20px;
+
 }
