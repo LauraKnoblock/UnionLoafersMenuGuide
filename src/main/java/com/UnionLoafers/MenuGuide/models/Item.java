@@ -21,10 +21,14 @@ public class Item extends AbstractEntity {
   @NotNull(message = "Category is required")
   private ItemCategory itemCategory;
 
-  public Item(String name, String desc, ItemCategory itemCategory) {
+  @Column(name="image")
+  private String image;
+
+  public Item(String name, String desc, ItemCategory itemCategory, String image) {
     this.name = name;
     this.desc = desc;
     this.itemCategory = itemCategory;
+    this.image = image;
   }
 
   public Item() {
@@ -38,6 +42,13 @@ public class Item extends AbstractEntity {
     this.name = name;
   }
 
+  public String getImage() {
+    return image;
+  }
+
+  public void setImage(String image) {
+    this.image = image;
+  }
 
   @Override
   public String toString() {

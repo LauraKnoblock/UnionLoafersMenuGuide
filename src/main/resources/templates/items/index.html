@@ -16,6 +16,7 @@
         <p>Name: <span th:text="${item.name}"></span></p>
         <p>Category: <span th:text="${item.itemCategory.name}"></span></p>
         <p>Description: <span th:text="${item.desc}"></span></p>
+        <img th:if="${item.image}" th:src="${item.image}" alt="Item Image">
     </div>
     <div class="item-actions">
         <a th:href="@{/items/edit/{id}(id=${item.id})}">Edit</a>

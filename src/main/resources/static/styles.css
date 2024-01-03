@@ -1,10 +1,12 @@
 body {
-font-size: 14px;
-color: #232434;
-background-color: #232434;
-font-family: Arial,Helvetica,sans-serif;
-justify-content: center;
-margin-top: 30px;
+    font-size: 14px;
+    color: #232434;
+    background-color: #232434;
+    font-family: Arial,Helvetica,sans-serif;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh
 }
 .item-container {
             border: 1px solid #ddd; /* Add your desired border style */
@@ -21,3 +23,10 @@ margin-top: 30px;
 margin-bottom: 20px;
 
 }
+
+img {
+            max-width: 200px;
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Avoid unwanted space below image */
+            margin-top: 5px; /* Add margin for spacing */
+        }
