@@ -36,7 +36,7 @@ public class ItemController {
 
       if (search != null && !search.isEmpty()) {
         // If search query is present, filter items based on the search query
-        items = itemRepository.findItemsByNameContainingIgnoreCase(search);
+        items = itemRepository.findItemsByNameContainingIgnoreCaseOrDescContainingIgnoreCase(search, search);
         model.addAttribute("title", "Search Results for: " + search);
       } else {
         // If no search query, get all items

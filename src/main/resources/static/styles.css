@@ -1,27 +1,39 @@
 body {
     font-size: 14px;
-    color: #232434;
-    background-color: #232434;
+    color: #191970;
+    background: url("https://images.squarespace-cdn.com/content/v1/59626a54e58c62cb702f966f/1499623836791-UGLPE1RTFE0VSRTY4HC1/LightMild_Slice+%281+of+3%29.jpg?format=1500w");
     font-family: Arial,Helvetica,sans-serif;
-    margin-top: 30px;
     align-items: center;
     justify-content: center;
-    min-height: 100vh
+    min-height: 100vh;
+    backdrop-filter: blur(5px);
 }
 .item-container {
             border: 1px solid #ddd; /* Add your desired border style */
             margin: 10px; /* Optional: Add space between containers */
             border-radius: 10px;
             padding: 10px; /* Optional: Add padding inside the container */
-            background: url("https://img.freepik.com/free-photo/sepia-plasterboard-texture_95678-419.jpg?w=996&t=st=1704297129~exp=1704297729~hmac=c11d53cfca38b660c2995bd1fa43a5fcc0a86cb700e145315d42148569851354");
+            background: url("https://www.frenchpaper.com/cdn/shop/products/KRAFT-TONE_Index_Off-White_Kraft_100C_01_400x.jpg?v=1624629595");
             display: inline-block;
             box-sizing: border-box;
-            width: calc(33.33% - 20px);
-        }
+            max-width: 30%;
+            }
+
+            .item-container img {
+                max-width: 200px;
+                height: auto;
+                display: block;
+                margin-top: 5px;
+                border-radius: 10px; /* Add border-radius for rounded corners */
+            }
+
+
 
 .nav {
-margin-bottom: 20px;
-
+background-color:  #191970;
+width: 100%;
+padding-top: 1rem;
+padding-bottom: 1rem;
 }
 
 img {
@@ -30,3 +42,39 @@ img {
             display: block; /* Avoid unwanted space below image */
             margin-top: 5px; /* Add margin for spacing */
         }
+
+label {
+color: #6699CC}
+
+a {
+color: #6699CC}
+
+.submit {
+border-radius: 1rem;
+}
+
+.search-form {
+    margin-top: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.search-form input {
+    border-radius: 1rem;
+    padding: 0.5rem;
+    margin-right: 5px; /* Optional: Add some spacing between input and button */
+}
+
+.search-form button {
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.item-details p {
+    padding: 5px; /* Adjust padding as needed */
+    margin: 0; /* Remove default margin */
+    color: #191970;
+}
+
+h6 {
+color: #191970;}

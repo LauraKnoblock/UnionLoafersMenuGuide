@@ -6,22 +6,30 @@
 <nav th:replace="fragments :: navigation">
 </nav>
 <form th:action="@{/items}" method="get" class="search-form">
-    <input type="text" name="search" placeholder="Search...">
-    <button type="submit">Search</button>
+    <input class="search" type="text" name="search" placeholder="Search...">
+    <button class="submit" type="submit">Search</button>
 </form>
 <p th:unless="${items} and ${items.size()}">No items!</p>
 
 <div th:each="item : ${items}" class="item-container">
     <div class="item-details">
-        <p>Name: <span th:text="${item.name}"></span></p>
-        <p>Category: <span th:text="${item.itemCategory.name}"></span></p>
-        <p>Description: <span th:text="${item.desc}"></span></p>
+        <h6><b><span th:text="${item.name}"></span></b></h6>
+        <p><span th:text="${item.desc}"></span></p>
         <img th:if="${item.image}" th:src="${item.image}" alt="Item Image">
+    </div>
+    <div class="item-details-back">
+<!--        &lt;!&ndash; Add ingredients or other information here &ndash;&gt;-->
+<!--        <p>Ingredients: <span th:text="${item.ingredients}"></span></p>-->
     </div>
     <div class="item-actions">
         <a th:href="@{/items/edit/{id}(id=${item.id})}">Edit</a>
     </div>
 </div>
+<script>
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+    </script>
 
 </body>
 </html>
