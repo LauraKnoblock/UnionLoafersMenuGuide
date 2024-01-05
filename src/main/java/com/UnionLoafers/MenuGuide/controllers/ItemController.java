@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -92,15 +93,15 @@ public class ItemController {
   @GetMapping("edit/{itemId}")
   public String displayEditForm(Model model, @PathVariable int itemId) {
     Optional<Item> optionalItem = itemRepository.findById(itemId);
-
-    if (optionalItem.isPresent()) {
+    List<ItemCategory> categories = new ArrayList<>((Collection) itemCategoryRepository.findAll());    if (optionalItem.isPresent()) {
       Item itemToEdit = optionalItem.get();
 
       model.addAttribute("item", itemToEdit);
       model.addAttribute("itemId", itemId);
-
+      model.addAttribute("categories", categories);
       String title = "Edit Item " + itemToEdit.getName() + " (id=" + itemToEdit.getId() + ")";
       model.addAttribute("title", title);
+
     }
       return "items/edit";
     }
@@ -108,13 +109,15 @@ public class ItemController {
 
 
   @PostMapping("edit/{id}")
-  public String processEditForm(@PathVariable("id") int id, String name, String desc) {
+  public String processEditForm(@PathVariable("id") int id, String name, String desc, String ingredients, String image) {
     Optional<Item> optionalItem = itemRepository.findById(id);
 
     if (optionalItem.isPresent()) {
       Item itemToEdit = optionalItem.get();
       itemToEdit.setName(name);
       itemToEdit.setDesc(desc);
+      itemToEdit.setImage(image);
+      itemToEdit.setIngredients(ingredients);
 
       // Save the changes back to the database
       itemRepository.save(itemToEdit);

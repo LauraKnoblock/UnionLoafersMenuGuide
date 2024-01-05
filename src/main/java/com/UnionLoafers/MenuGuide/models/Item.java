@@ -24,11 +24,15 @@ public class Item extends AbstractEntity {
   @Column(name="image")
   private String image;
 
-  public Item(String name, String desc, ItemCategory itemCategory, String image) {
+  @Column(name="ingredients")
+  private String ingredients;
+
+  public Item(String name, String desc, ItemCategory itemCategory, String image, String ingredients) {
     this.name = name;
     this.desc = desc;
     this.itemCategory = itemCategory;
     this.image = image;
+    this.ingredients = ingredients;
   }
 
   public Item() {
@@ -48,6 +52,14 @@ public class Item extends AbstractEntity {
 
   public void setImage(String image) {
     this.image = image;
+  }
+
+  public String getIngredients() {
+    return ingredients;
+  }
+
+  public void setIngredients(String ingredients) {
+    this.ingredients = ingredients;
   }
 
   @Override

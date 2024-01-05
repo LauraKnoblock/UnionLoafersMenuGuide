@@ -15,6 +15,7 @@
     <div class="item-details">
         <h6><b><span th:text="${item.name}"></span></b></h6>
         <p><span th:text="${item.desc}"></span></p>
+        <p><span th:text="${item.ingredients}"></span></p>
         <img th:if="${item.image}" th:src="${item.image}" alt="Item Image">
     </div>
     <div class="item-details-back">
