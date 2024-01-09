@@ -4,6 +4,11 @@
 </head>
 <body class="container">
 
+<form th:action="@{/items}" method="get" class="search-form">
+    <input class="search" type="text" name="search" placeholder="Search...">
+    <button class="submit" type="submit">Search</button>
+</form>
+
 <form method="post">
 
         <th:block th:each="item : ${items}">

@@ -3,7 +3,7 @@
 <head th:replace="fragments :: head">
     <link th:href="@{/styles.css}" rel="stylesheet">
 </head>
-<body class="container">
+<body class="container edit-create-page">
 
 <nav th:replace="fragments :: navigation"></nav>
 
@@ -33,12 +33,22 @@
             </select>
         </div>
         <div class="form-group">
+            <label>Is it vegan?</label>
+            <select name="vegan">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label>Image URL</label>
             <input type="text" th:field="*{image}">
             <img th:if="${item.image}" th:src="${item.image}" alt="Item Image">
         </div>
         <div class="form-group">
             <input type="submit" value="Edit Item" class="btn btn-success">
+        </div>
+        <div class="form-group">
+            <a th:href="@{'/items/delete/' + ${item.id}}" class="btn btn-danger">Delete Item</a>
         </div>
     </form>
 </div>

@@ -37,7 +37,7 @@ public class ItemController {
 
       if (search != null && !search.isEmpty()) {
         // If search query is present, filter items based on the search query
-        items = itemRepository.findItemsByNameContainingIgnoreCaseOrDescContainingIgnoreCase(search, search);
+        items = itemRepository.findItemsByNameContainingIgnoreCaseOrDescContainingIgnoreCaseOrIngredientsContainingIgnoreCase(search, search, search);
         model.addAttribute("title", "Search Results for: " + search);
       } else {
         // If no search query, get all items
@@ -69,24 +69,29 @@ public class ItemController {
 
   @PostMapping("create")
   public String processCreateItemForm(@ModelAttribute Item newItem) {
+
     itemRepository.save(newItem);
     return "redirect:/items";
   }
 
-  @GetMapping("delete")
-  public String displayDeleteItemForm(Model model) {
-    model.addAttribute("title", "Delete Items");
-    model.addAttribute("items", itemRepository.findAll());
-    return "items/delete";
+  @GetMapping("delete/{itemId}")
+  public String displayDeleteItemForm(Model model, @PathVariable int itemId) {
+    Optional<Item> optionalItem = itemRepository.findById(itemId);
+
+    if (optionalItem.isPresent()) {
+      Item itemToDelete = optionalItem.get();
+      model.addAttribute("item", itemToDelete);
+      model.addAttribute("title", "Delete Item " + itemToDelete.getName());
+      return "items/delete";
+    } else {
+      // Handle the case where the item with the given ID is not found
+      return "redirect:/items";
+    }
   }
 
-  @PostMapping("delete")
-  public String processDeleteItemForm(@RequestParam(required = false) int[] itemIds) {
-    if (itemIds != null) {
-    for (int id: itemIds) {
-      itemRepository.deleteById(id);
-      }
-    }
+  @PostMapping("delete/{itemId}")
+  public String processDeleteItemForm(@PathVariable int itemId) {
+    itemRepository.deleteById(itemId);
     return "redirect:/items";
   }
 
@@ -109,7 +114,7 @@ public class ItemController {
 
 
   @PostMapping("edit/{id}")
-  public String processEditForm(@PathVariable("id") int id, String name, String desc, String ingredients, String image) {
+  public String processEditForm(@PathVariable("id") int id, String name, String desc, String ingredients, String image, String vegan) {
     Optional<Item> optionalItem = itemRepository.findById(id);
 
     if (optionalItem.isPresent()) {
@@ -118,6 +123,7 @@ public class ItemController {
       itemToEdit.setDesc(desc);
       itemToEdit.setImage(image);
       itemToEdit.setIngredients(ingredients);
+      itemToEdit.setVegan(vegan != null ? vegan.trim() : null);
 
       // Save the changes back to the database
       itemRepository.save(itemToEdit);

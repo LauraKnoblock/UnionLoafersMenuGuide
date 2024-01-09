@@ -1,22 +1,29 @@
 body {
-    font-size: 14px;
+    font-size: 12px;
     color: #191970;
     background: url("https://images.squarespace-cdn.com/content/v1/59626a54e58c62cb702f966f/1499623836791-UGLPE1RTFE0VSRTY4HC1/LightMild_Slice+%281+of+3%29.jpg?format=1500w");
+     background-attachment: fixed;
     font-family: Arial,Helvetica,sans-serif;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     backdrop-filter: blur(5px);
+    margin: 0;
 }
+
+.container {
+width: 100%;}
 .item-container {
-            border: 1px solid #ddd; /* Add your desired border style */
-            margin: 10px; /* Optional: Add space between containers */
+
+            margin: 1rem; /* Optional: Add space between containers */
             border-radius: 10px;
             padding: 10px; /* Optional: Add padding inside the container */
-            background: url("https://www.frenchpaper.com/cdn/shop/products/KRAFT-TONE_Index_Off-White_Kraft_100C_01_400x.jpg?v=1624629595");
+            background:rgba(255, 255, 255, 0.5)  url("https://www.frenchpaper.com/cdn/shop/products/KRAFT-TONE_Index_Off-White_Kraft_100C_01_400x.jpg?v=1624629595");
             display: inline-block;
             box-sizing: border-box;
-            max-width: 30%;
+            max-width: 10rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            opacity: 0.8;
             }
 
             .item-container img {
@@ -25,17 +32,44 @@ body {
                 display: block;
                 margin-top: 5px;
                 border-radius: 10px; /* Add border-radius for rounded corners */
+                align-items: center;
             }
 
-
-
-.nav {
-background-color:  #191970;
-width: 100%;
-padding-top: 1rem;
-padding-bottom: 1rem;
+.item-container.edit-create-page:hover {
+    transform: none; /* Reset transform for edit or create page */
+    box-shadow: none; /* Reset box-shadow for edit or create page */
+    transition: none; /* Reset transition for edit or create page */
 }
 
+.nav {
+    background-color: #191970;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    position: relative;
+    opacity: 0.8;
+}
+
+.nav ul {
+    display: flex;
+    float: right;
+    margin-top: 5rem;
+    padding: 0;
+    align: right;
+}
+
+.nav li {
+    list-style: none;
+    margin-top: 5rem;
+
+}
+
+.nav img {
+    margin-left: 20px;
+    max-width: 100px;
+}
+
+.nav h1 {
+margin-top: 3rem;}
 img {
             max-width: 200px;
             height: auto; /* Maintain aspect ratio */
@@ -78,3 +112,72 @@ border-radius: 1rem;
 
 h6 {
 color: #191970;}
+
+
+.items-container {
+    float: center;
+    width: 60%;
+}
+
+.item-details h6 {
+    color: #191970;
+    text-shadow: 2px 2px 4px rgba(0,0,0, 0.3);
+    text-align: center;
+}
+
+.item-details img {
+    max-width: 200px;
+      height: auto;
+      display: flex;
+      margin-top: 5px;
+      border-radius: 10px;
+      align-items: center;
+}
+
+h1 {
+color: #F8F8FF;
+text-shadow: 2px 2px 4px rgba(0,0,0, 0.3);
+text-align: center;
+margin-top: 1 rem;
+}
+.form-group label {
+    margin-bottom: 0.5rem; /* Adjust the margin as needed */
+}
+
+.item-actions {
+float: right;
+color: #008000;
+}
+
+.vegan-icon {
+float: center;
+width: 2rem;
+height: auto;}
+
+.item-container:hover {
+    transform: scale(1.05); /* Increase size by 5% */
+    box-shadow: 0 8px 16px rgba(255,255, 255, 0.9); /* Add a shadow for the glow effect */
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: none;/* Smooth transition */
+}
+
+@media only screen and (min-width: 600px) {
+    /* Adjust styles for screens larger than 600 pixels wide */
+    .item-container {
+        max-width: 30%; /* Adjust as needed */
+    }
+
+    .nav ul {
+        margin-top: 0;
+    }
+
+    .nav li {
+        margin-right: 10px;
+    }
+
+    .items-container {
+        width: 50%;
+    }
+    .nav h1 {
+    margin-left: 1rem;}
+}

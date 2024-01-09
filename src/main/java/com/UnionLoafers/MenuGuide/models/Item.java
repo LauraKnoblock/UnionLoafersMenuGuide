@@ -27,12 +27,16 @@ public class Item extends AbstractEntity {
   @Column(name="ingredients")
   private String ingredients;
 
-  public Item(String name, String desc, ItemCategory itemCategory, String image, String ingredients) {
+  @Column(name="vegan", length=255)
+  private String vegan;
+
+  public Item(String name, String desc, ItemCategory itemCategory, String image, String ingredients, String vegan) {
     this.name = name;
     this.desc = desc;
     this.itemCategory = itemCategory;
     this.image = image;
     this.ingredients = ingredients;
+    this.vegan = vegan;
   }
 
   public Item() {
@@ -60,6 +64,14 @@ public class Item extends AbstractEntity {
 
   public void setIngredients(String ingredients) {
     this.ingredients = ingredients;
+  }
+
+  public String getVegan() {
+    return vegan;
+  }
+
+  public void setVegan(String vegan) {
+    this.vegan = vegan;
   }
 
   @Override
