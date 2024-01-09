@@ -3,13 +3,13 @@
 <head th:replace="fragments :: head">
     <link th:href="@{/styles.css}" rel="stylesheet">
 </head>
-<body class="container edit-create-page">
+<body class="container">
 
 <nav th:replace="fragments :: navigation">
 </nav>
 
 <h1>Create Item</h1>
-<div class="item-container">
+<div class="item-container edit-create-page">
     <form method="post" action="/items/create">
         <div class="form-group">
             <label>Name</label>

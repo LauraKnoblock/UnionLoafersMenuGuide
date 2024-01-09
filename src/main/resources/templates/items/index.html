@@ -19,7 +19,7 @@
         <img th:if="${item.vegan == 'yes'}" class="vegan-icon" th:src="@{/vegan.png}" alt="Vegan Icon">
         <p><span th:text="${item.desc}"></span></p>
         <p>Ingredients:</p>
-        <p><span th:text="${item.ingredients}"></span></p>
+        <p class="item-ingredients"><span th:text="${item.ingredients}"></span></p>
         <img th:if="${item.image}" th:src="${item.image}" alt="Item Image">
 
     </div>
