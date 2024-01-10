@@ -25,6 +25,18 @@ public class ItemController {
   @Autowired
   private ItemCategoryRepository itemCategoryRepository;
 // findAll, save, findById
+
+  @ModelAttribute("categories")
+  public List<ItemCategory> addCategoriesToModel() {
+    return (List<ItemCategory>) itemCategoryRepository.findAll();
+  }
+
+  @GetMapping("index")
+  public String index(Model model) {
+    List<ItemCategory> categories = (List<ItemCategory>) itemCategoryRepository.findAll();
+    model.addAttribute("categories", categories);
+    return "index";
+  }
   @GetMapping
   public String displayAllItems(@RequestParam(required = false) Integer categoryId,
                                 @RequestParam(required = false) String search,

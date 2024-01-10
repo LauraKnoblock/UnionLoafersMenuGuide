@@ -7,10 +7,25 @@
 <nav th:replace="fragments :: navigation">
 </nav>
 <h1>All Items</h1>
-<form th:action="@{/items}" method="get" class="search-form">
-    <input class="search" type="text" name="search" placeholder="Search...">
-    <button class="submit" type="submit">Search</button>
-</form>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <nav th:fragment="leftNavigation">
+                <ul class="nav flex-column">
+                    <h3>Categories</h3>
+                    <li class="nav-item" th:each="category : ${categories}">
+                        <a class="nav-link" th:text="${category.name}" th:href="'/items?categoryId=' + ${category.id}"></a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/itemCategories/create">Create Category</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-10">
+            <form th:action="@{/items}" method="get" class="search-form">
+                <input class="search" type="text" name="search" placeholder="Search...">
+                <button class="submit" type="submit">Search</button>
+            </form>
 <!--<p th:unless="${items} and ${items.size()}">No items!</p>-->
 
 <div th:each="item : ${items}" class="item-container">
