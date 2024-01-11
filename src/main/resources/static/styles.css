@@ -52,11 +52,15 @@ color: #191970;
     align: right;
 }
 
-.nav li {
+.nav .nav-link li {
     list-style: none;
     margin-top: 1rem;
     margin-right: 10px;
+    font-size: 18px;
+}
 
+.nav .nav-link li:hover {
+color: #6495ED;
 }
 
 .nav img {
@@ -178,13 +182,20 @@ height: auto;}
     transition: none; /* Reset transition for edit or create page */
 }
 
-.row {
-opacity: 0.8;
-}
+
 
 .col-md-2 {
 color: #F8F8FF;
 font-size: 18px;
+opacity: 80%;
+}
+
+.col-md-2 .nav-link {
+color: #F8F8FF;
+}
+
+.col-md-2 .nav-link:hover {
+color: #6495ED;
 }
 
 .col-md-10 {
@@ -201,6 +212,8 @@ text-align: left;
 .row h3 {
 margin-top: 1rem;
 }
+
+
 
 @media only screen and (min-width: 600px) {
     /* Adjust styles for screens larger than 600 pixels wide */
