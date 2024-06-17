@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymyleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:fragment="head">
     <meta charset="UTF-8"/>
     <title>Menu Items</title>
@@ -9,22 +9,46 @@
     <link th:href="@{/styles.css}" rel="stylesheet">
     <script src="/static/script.js"></script>
 
+    <!-- OpenWeatherMap Widget -->
+    <script>
+        window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
+        window.myWidgetParam.push({
+            id: 22,
+            cityid: '4407066',
+            appid: '04f60a355e869a792188146b65b2281e',
+            units: 'imperial',
+            containerid: 'openweathermap-widget-22',
+        });
+        (function() {
+            var script = document.createElement('script');
+            script.async = true;
+            script.charset = "utf-8";
+            script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(script, s);
+        })();
+    </script>
 </head>
 <body class="container">
-<nav th:fragment="navigation">
-    <ul class="nav">
-        <a href="/">
-            <img class="logo" src="https://images.squarespace-cdn.com/content/v1/59626a54e58c62cb702f966f/1550516597840-RQUDC10WZ33QFTLH6UAZ/Seal_blue.png?format=100w" alt="Logo">
-        </a>
-        <h1>Union Loafers Menu Guide</h1>
-        <li class="nav-link"> <a href ="/items"> All Items</a></li>
+<nav th:fragment="navigation" class="nav">
+    <ul>
+        <li>
+            <a href="/">
+                <img class="logo" src="https://images.squarespace-cdn.com/content/v1/59626a54e58c62cb702f966f/1550516597840-RQUDC10WZ33QFTLH6UAZ/Seal_blue.png?format=100w" alt="Logo">
+            </a>
+        </li>
+        <li>
+            <h1>Union Loafers Menu Guide</h1>
+        </li>
+
+        <li class="nav-link"><a href="/items"> All Items</a></li>
         <li class="nav-link"><a href="items/create">Create Item</a></li>
-<!--        <li class="nav-link"><a href="items/delete">Delete Item</a></li>-->
-<!--        <li class="nav-link"><a href="/itemCategories">All Categories</a></li>-->
-<!--        <li class="nav-link"><a href="/itemCategories/create">Create Category</a></li>-->
+<div id="openweathermap-widget-22"></div>
+        <!-- <li class="nav-link"><a href="items/delete">Delete Item</a></li> -->
+        <!-- <li class="nav-link"><a href="/itemCategories">All Categories</a></li> -->
+        <!-- <li class="nav-link"><a href="/itemCategories/create">Create Category</a></li> -->
     </ul>
-
-
 </nav>
+
 </body>
 </html>

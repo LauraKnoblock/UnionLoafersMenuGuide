@@ -32,12 +32,14 @@ width: 100%;}
                 border-radius: 10px; /* Add border-radius for rounded corners */
                 align-items: center;
             }
-
+#openweathermap-widget-22 {
+align: right;
+}
 .item-container td {
-color: #191970;
+color: white;
 }
 .nav {
-    background-color: #191970;
+    background-color: #89CFF0;
     position: relative;
     opacity: 0.8;
     display: flex;
@@ -82,6 +84,9 @@ margin-left 1rem;}
         margin: 0 10px; /* Adjust as needed */
         padding: 5px; /* Adjust as needed */
     }
+
+
+
 img {
             max-width: 200px;
             height: auto; /* Maintain aspect ratio */
@@ -212,6 +217,8 @@ text-align: left;
 .row h3 {
 margin-top: 1rem;
 }
+
+
 
 
 
