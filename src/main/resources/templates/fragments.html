@@ -7,31 +7,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 
     <link th:href="@{/styles.css}" rel="stylesheet">
-    <script src="/static/script.js"></script>
 
     <!-- OpenWeatherMap Widget -->
-    <script>
-        window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
-        window.myWidgetParam.push({
-            id: 22,
-            cityid: '4407066',
-            appid: '04f60a355e869a792188146b65b2281e',
-            units: 'imperial',
-            containerid: 'openweathermap-widget-22',
-        });
-        (function() {
-            var script = document.createElement('script');
-            script.async = true;
-            script.charset = "utf-8";
-            script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(script, s);
-        })();
-    </script>
+<!--    <script>-->
+<!--        window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];-->
+<!--        window.myWidgetParam.push({-->
+<!--            id: 22,-->
+<!--            cityid: '4407066',-->
+<!--            appid: '04f60a355e869a792188146b65b2281e',-->
+<!--            units: 'imperial',-->
+<!--            containerid: 'openweathermap-widget-22',-->
+<!--        });-->
+<!--        (function() {-->
+<!--            var script = document.createElement('script');-->
+<!--            script.async = true;-->
+<!--            script.charset = "utf-8";-->
+<!--            script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";-->
+<!--            var s = document.getElementsByTagName('script')[0];-->
+<!--            s.parentNode.insertBefore(script, s);-->
+<!--        })();-->
+<!--    </script>-->
+
 </head>
 <body class="container">
 <nav th:fragment="navigation" class="nav">
-    <ul>
+
         <li>
             <a href="/">
                 <img class="logo" src="https://images.squarespace-cdn.com/content/v1/59626a54e58c62cb702f966f/1550516597840-RQUDC10WZ33QFTLH6UAZ/Seal_blue.png?format=100w" alt="Logo">
@@ -43,10 +43,13 @@
 
         <li class="nav-link"><a href="/items"> All Items</a></li>
         <li class="nav-link"><a href="items/create">Create Item</a></li>
-<div id="openweathermap-widget-22"></div>
-        <!-- <li class="nav-link"><a href="items/delete">Delete Item</a></li> -->
-        <!-- <li class="nav-link"><a href="/itemCategories">All Categories</a></li> -->
-        <!-- <li class="nav-link"><a href="/itemCategories/create">Create Category</a></li> -->
+
+    <img th:src="'https://openweathermap.org/img/wn/' + ${weatherData.current.weather[0].icon} + '@2x.png'" alt="Weather Icon" />
+    <p>Currently: <span th:text="${weatherData.current.weather[0].description}"></span></p>
+                <p>Current Temp: <span th:text="${weatherData.current.temp}"></span>F</p>
+                <p>Wind Speed: <span th:text="${weatherData.current.wind_speed}"></span>mph</p>
+
+
     </ul>
 </nav>
 
