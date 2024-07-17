@@ -37,20 +37,22 @@
                 <img class="logo" src="https://images.squarespace-cdn.com/content/v1/59626a54e58c62cb702f966f/1550516597840-RQUDC10WZ33QFTLH6UAZ/Seal_blue.png?format=100w" alt="Logo">
             </a>
         </li>
-        <li>
+
             <h1>Union Loafers Menu Guide</h1>
-        </li>
 
-        <li class="nav-link"><a href="/items"> All Items</a></li>
+    <div class="nav-links">  <li class="nav-link"><a href="/items"> All Items</a></li>
         <li class="nav-link"><a href="items/create">Create Item</a></li>
-
-    <img th:src="'https://openweathermap.org/img/wn/' + ${weatherData.current.weather[0].icon} + '@2x.png'" alt="Weather Icon" />
-    <p>Currently: <span th:text="${weatherData.current.weather[0].description}"></span></p>
-                <p>Current Temp: <span th:text="${weatherData.current.temp}"></span>F</p>
-                <p>Wind Speed: <span th:text="${weatherData.current.wind_speed}"></span>mph</p>
+    </div>
 
 
-    </ul>
+    <div class="weather-container">
+        <img th:src="'https://openweathermap.org/img/wn/' + ${weatherData.current.weather[0].icon} + '@2x.png'" alt="Weather Icon" />
+        <p>Currently: <span th:text="${weatherData.current.weather[0].description}"></span></p>
+        <p>Current Temp: <span th:text="${weatherData.current.temp}"></span>F </p>
+        <p>Wind Speed: <span th:text="${weatherData.current.wind_speed}"></span>mph</p>
+        <p th:if="${weatherData.current.temp > 60}" th:unless="${weatherData.current.weather[0].description.contains('rain')}">Beautiful patio day!</p>
+        <p th:if="${weatherData.current.weather[0].description.contains('rain')}">Check with MOD for patio setup.</p>
+    </div>
 </nav>
 
 
