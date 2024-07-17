@@ -6,15 +6,18 @@ import com.UnionLoafers.MenuGuide.data.ItemData;
 import com.UnionLoafers.MenuGuide.data.ItemRepository;
 import com.UnionLoafers.MenuGuide.models.Item;
 import com.UnionLoafers.MenuGuide.models.ItemCategory;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.*;
 
 @Controller
 @RequestMapping("items")
@@ -22,9 +25,14 @@ public class ItemController {
   @Autowired
   private ItemRepository itemRepository;
 
+
+
   @Autowired
   private ItemCategoryRepository itemCategoryRepository;
 // findAll, save, findById
+
+  private final String apiKey = "04f60a355e869a792188146b65b2281e";
+
 
   @ModelAttribute("categories")
   public List<ItemCategory> addCategoriesToModel() {
@@ -35,6 +43,28 @@ public class ItemController {
   public String index(Model model) {
     List<ItemCategory> categories = (List<ItemCategory>) itemCategoryRepository.findAll();
     model.addAttribute("categories", categories);
+
+    HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://api.openweathermap.org/data/3.0/onecall?lat=38&lon=-90&units=imperial&appid=" + apiKey))
+            .header("OpenWeatherMap", "https://api.openweathermap.org")
+            .header("openWeatherAPI-Key", "04f60a355e869a792188146b65b2281e")
+            .method("GET", HttpRequest.BodyPublishers.noBody())
+            .build();
+
+    HttpResponse<String> response = null;
+
+    try {
+      response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+      ObjectMapper mapper = new ObjectMapper();
+      Map<String, Object> weatherData = mapper.readValue(response.body(), Map.class);
+      model.addAttribute("weatherData", weatherData);
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    System.out.println(response.body());
     return "index";
   }
   @GetMapping
@@ -59,23 +89,64 @@ public class ItemController {
       Optional<ItemCategory> result = itemCategoryRepository.findById(categoryId);
       if (result.isEmpty()) {
         model.addAttribute("title", "Invalid Category ID: " + categoryId);
-        return "items/index"; // Return early if invalid category ID
+        items = Collections.emptyList(); // Set an empty list if category is invalid
       } else {
         ItemCategory category = result.get();
         model.addAttribute("title", "Items in category: " + category.getName());
-        model.addAttribute("items", category.getItems());
-        return "items/index"; // Return early for category view
+        items = category.getItems();
       }
     }
 
     model.addAttribute("items", items);
+
+    HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://api.openweathermap.org/data/3.0/onecall?lat=38&lon=-90&units=imperial&appid=" + apiKey))
+            .header("OpenWeatherMap", "https://api.openweathermap.org")
+            .header("openWeatherAPI-Key", apiKey)
+            .method("GET", HttpRequest.BodyPublishers.noBody())
+            .build();
+
+    HttpResponse<String> response = null;
+    Map<String, Object> weatherData = new HashMap<>();
+
+    try {
+      response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+      ObjectMapper mapper = new ObjectMapper();
+      weatherData = mapper.readValue(response.body(), Map.class);
+    } catch (IOException | InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    model.addAttribute("weatherData", weatherData);
+    System.out.println(response.body());
     return "items/index";
   }
+
   @GetMapping("create")
   public String displayCreateItemForm(Model model) {
     model.addAttribute("title", "Create Item");
     model.addAttribute(new Item());
     model.addAttribute("categories", itemCategoryRepository.findAll());
+    HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://api.openweathermap.org/data/3.0/onecall?lat=38&lon=-90&units=imperial&appid=" + apiKey))
+            .header("OpenWeatherMap", "https://api.openweathermap.org")
+            .header("openWeatherAPI-Key", apiKey)
+            .method("GET", HttpRequest.BodyPublishers.noBody())
+            .build();
+
+    HttpResponse<String> response = null;
+    Map<String, Object> weatherData = new HashMap<>();
+
+    try {
+      response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+      ObjectMapper mapper = new ObjectMapper();
+      weatherData = mapper.readValue(response.body(), Map.class);
+    } catch (IOException | InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    model.addAttribute("weatherData", weatherData);
+    System.out.println(response.body());
     return "items/create";
   }
 
@@ -102,8 +173,29 @@ public class ItemController {
   }
 
   @PostMapping("delete/{itemId}")
-  public String processDeleteItemForm(@PathVariable int itemId) {
+  public String processDeleteItemForm(@PathVariable int itemId, Model model) {
+    HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://api.openweathermap.org/data/3.0/onecall?lat=38&lon=-90&units=imperial&appid=" + apiKey))
+            .header("OpenWeatherMap", "https://api.openweathermap.org")
+            .header("openWeatherAPI-Key", apiKey)
+            .method("GET", HttpRequest.BodyPublishers.noBody())
+            .build();
+
+    HttpResponse<String> response = null;
+    Map<String, Object> weatherData = new HashMap<>();
+
+    try {
+      response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+      ObjectMapper mapper = new ObjectMapper();
+      weatherData = mapper.readValue(response.body(), Map.class);
+    } catch (IOException | InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    model.addAttribute("weatherData", weatherData);
+    System.out.println(response.body());
     itemRepository.deleteById(itemId);
+
     return "redirect:/items";
   }
 
@@ -118,6 +210,26 @@ public class ItemController {
       model.addAttribute("categories", categories);
       String title = "Edit Item " + itemToEdit.getName() + " (id=" + itemToEdit.getId() + ")";
       model.addAttribute("title", title);
+      HttpRequest request = HttpRequest.newBuilder()
+              .uri(URI.create("https://api.openweathermap.org/data/3.0/onecall?lat=38&lon=-90&units=imperial&appid=" + apiKey))
+              .header("OpenWeatherMap", "https://api.openweathermap.org")
+              .header("openWeatherAPI-Key", apiKey)
+              .method("GET", HttpRequest.BodyPublishers.noBody())
+              .build();
+
+      HttpResponse<String> response = null;
+      Map<String, Object> weatherData = new HashMap<>();
+
+      try {
+        response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        ObjectMapper mapper = new ObjectMapper();
+        weatherData = mapper.readValue(response.body(), Map.class);
+      } catch (IOException | InterruptedException e) {
+        e.printStackTrace();
+      }
+
+      model.addAttribute("weatherData", weatherData);
+      System.out.println(response.body());
 
     }
       return "items/edit";
