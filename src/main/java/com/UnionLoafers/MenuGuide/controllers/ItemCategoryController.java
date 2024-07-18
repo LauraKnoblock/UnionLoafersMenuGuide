@@ -16,10 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +29,6 @@ public class ItemCategoryController {
 
   @Autowired
   private ItemCategoryRepository itemCategoryRepository;
-  private final String apiKey = "04f60a355e869a792188146b65b2281e";
 
 
   @GetMapping

@@ -119,8 +119,12 @@ public class ItemController {
   }
 
   @PostMapping("create")
-  public String processCreateItemForm(@ModelAttribute Item newItem) {
-
+  public String processCreateItemForm(@ModelAttribute Item newItem, Model model) {
+    if (newItem.getItemCategory() == null || newItem.getItemCategory().isEmpty()
+            || newItem.getItemCategory().equals("Choose a Category...")) {
+      model.addAttribute("categoryError", "Please choose a category for the item.");
+      return "redirect:/items/create"; // Redirect back to the form with error
+    }
     itemRepository.save(newItem);
     return "redirect:/items";
   }
