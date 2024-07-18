@@ -238,7 +238,14 @@ public class ItemController {
 
 
   @PostMapping("edit/{id}")
-  public String processEditForm(@PathVariable("id") int id, String name, String desc, String ingredients, String image, String vegan) {
+  public String processEditForm(@PathVariable("id") int id,
+                                @RequestParam String name,
+                                @RequestParam String desc,
+                                @RequestParam String ingredients,
+                                @RequestParam String image,
+                                @RequestParam String vegan,
+                                @RequestParam Integer itemCategoryId) {
+
     Optional<Item> optionalItem = itemRepository.findById(id);
 
     if (optionalItem.isPresent()) {
@@ -249,10 +256,17 @@ public class ItemController {
       itemToEdit.setIngredients(ingredients);
       itemToEdit.setVegan(vegan != null ? vegan.trim() : null);
 
+      // Update the item category if the selected itemCategoryId is not null
+      if (itemCategoryId != null) {
+        Optional<ItemCategory> optionalCategory = itemCategoryRepository.findById(itemCategoryId);
+        optionalCategory.ifPresent(itemToEdit::setItemCategory);
+      }
+
       // Save the changes back to the database
       itemRepository.save(itemToEdit);
     }
 
     return "redirect:/items";
   }
+
 }

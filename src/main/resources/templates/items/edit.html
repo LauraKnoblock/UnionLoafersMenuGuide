@@ -25,11 +25,11 @@
         </div>
         <div class="form-group">
             <label>Category</label>
-            <select th:field="*{itemCategory}">
-                <option th:each="itemCategory : ${categories}"
-                        th:value="${itemCategory.id}"
-                        th:text="${itemCategory.name}">
-                </option>
+            <select name="itemCategoryId">
+                <option th:each="category : ${categories}"
+                        th:value="${category.id}"
+                        th:text="${category.name}"
+                        th:selected="${category.id == item.itemCategory.id}"></option>
             </select>
         </div>
         <div class="form-group">
