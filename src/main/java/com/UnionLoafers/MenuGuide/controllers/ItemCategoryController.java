@@ -3,6 +3,7 @@ package com.UnionLoafers.MenuGuide.controllers;
 
 import com.UnionLoafers.MenuGuide.data.ItemCategoryRepository;
 import com.UnionLoafers.MenuGuide.models.ItemCategory;
+import com.UnionLoafers.MenuGuide.models.WeatherService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +20,16 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
 @RequestMapping("itemCategories")
 public class ItemCategoryController {
+
+  @Autowired
+  private WeatherService weatherService;
+
 
   @Autowired
   private ItemCategoryRepository itemCategoryRepository;
@@ -35,27 +41,15 @@ public class ItemCategoryController {
     model.addAttribute("title", "All Categories");
     model.addAttribute("categories", itemCategoryRepository.findAll());
 
-    HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.openweathermap.org/data/3.0/onecall?lat=38&lon=-90&units=imperial&appid=" + apiKey))
-            .header("OpenWeatherMap", "https://api.openweathermap.org")
-            .header("openWeatherAPI-Key", "04f60a355e869a792188146b65b2281e")
-            .method("GET", HttpRequest.BodyPublishers.noBody())
-            .build();
-
-    HttpResponse<String> response = null;
-
     try {
-      response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-      ObjectMapper mapper = new ObjectMapper();
-      Map<String, Object> weatherData = mapper.readValue(response.body(), Map.class);
+      Map<String, Object> weatherData = weatherService.fetchWeatherData();
       model.addAttribute("weatherData", weatherData);
-
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (InterruptedException e) {
+    }
+    catch (IOException | InterruptedException e) {
+      model.addAttribute("weatherData", new HashMap<>()); // Provide empty data or default values
       e.printStackTrace();
     }
-    System.out.println(response.body());
+
     return "itemCategories/index";
   }
 

@@ -1,6 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymyleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
+    <script th:inline="javascript">
+        function showPasswordPrompt(url) {
+            var password = prompt("Please enter the secret password:");
+
+            if (password !== null && password === 'isTeddyhere?') {
+                // If password is correct, proceed to the specified URL
+                window.location.href = url;
+            } else {
+                // Handle incorrect password or cancel
+                alert("Incorrect password. Access denied.");
+            }
+        }
+    </script>
 </head>
 <body>
 <nav th:replace="fragments :: navigation">
@@ -15,12 +28,13 @@
                 <li class="nav-item" th:each="category : ${categories}">
                     <a class="nav-link" th:text="${category.name}" th:href="'/items?categoryId=' + ${category.id}"></a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="/itemCategories/create">Create Category</a></li>
+                <li>
+                    <a href="#" onclick="showPasswordPrompt('/items/create'); return false;">Create Item</a>
+                </li>
             </ul>
         </nav>
     </div>
-        </nav>
-    </div>
 </div>
+
 </body>
 </html>
