@@ -11,6 +11,8 @@
 <body>
 <nav th:replace="fragments :: navigation">
 </nav>
+<h1><span th:text="${title}"></span></h1>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2">
@@ -25,6 +27,7 @@
 
             </nav>
         </div>
+
         <div class="col-md-10">
             <form th:action="@{/items}" method="get" class="search-form">
                 <input class="search" type="text" name="search" placeholder="Search...">
@@ -50,11 +53,7 @@
         </svg></a>
     </div>
 </div>
-<script>
-        function filterItems(categoryId) {
 
-        }
-    </script>
 
 </body>
 </html>

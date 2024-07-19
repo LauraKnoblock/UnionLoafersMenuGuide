@@ -31,7 +31,7 @@ public class HomeController {
   @GetMapping("/")
   public String index(Model model) throws IOException, InterruptedException {
     List<ItemCategory> categories = (List<ItemCategory>) itemCategoryRepository.findAll();
-
+    model.addAttribute("title", "Hey there, Loafer!");
     model.addAttribute("categories", categories);
     try {
       Map<String, Object> weatherData = weatherService.fetchWeatherData();

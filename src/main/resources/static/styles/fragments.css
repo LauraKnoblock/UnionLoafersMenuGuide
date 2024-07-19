@@ -1,4 +1,15 @@
 /* Global Styles for Fragments */
+
+@keyframes dropIn {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 body {
     font-family: Montserrat, Arial, sans-serif;
     background: url("https://images.squarespace-cdn.com/content/v1/59626a54e58c62cb702f966f/1499623836791-UGLPE1RTFE0VSRTY4HC1/LightMild_Slice+%281+of+3%29.jpg?format=1500w");
@@ -50,10 +61,25 @@ body {
 .nav .nav-link a:hover {
     color: #305fa6;
 }
+
+.animated-title {
+    color: #F8F8FF;
+    text-shadow: 2px 2px 4px rgba(0,0,0, 0.3);
+    text-align: center;
+    margin-top: 2rem;
+     animation: dropIn 1s ease-out; /* Apply the animation */
+}
+
+h1 {
+    color: #F8F8FF;
+    text-shadow: 2px 2px 4px rgba(0,0,0, 0.3);
+    text-align: center;
+}
 .col-md-2 {
 color: #F8F8FF;
 font-size: 18px;
 opacity: 80%;
+margin-top: -5.5rem;
 }
 
 .col-md-2 .nav-link {

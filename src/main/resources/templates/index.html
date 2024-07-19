@@ -7,6 +7,7 @@
 <nav th:replace="fragments :: navigation">
     <link th:href="@{/styles/index.css}" rel="stylesheet">
 </nav>
+<h1 class="animated-title"><span th:text="${title}"></span></h1>
 
 <div class="row">
     <div class="col-md-2">
@@ -20,7 +21,6 @@
         </nav>
     </div>
 </div>
-<h1><span th:text="${title}"></span></h1>
 
 </body>
 </html>

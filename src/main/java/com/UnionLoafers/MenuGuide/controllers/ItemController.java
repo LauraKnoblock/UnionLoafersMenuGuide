@@ -167,7 +167,7 @@ public class ItemController {
       model.addAttribute("item", itemToEdit);
       model.addAttribute("itemId", itemId);
       model.addAttribute("categories", categories);
-      String title = "Edit Item " + itemToEdit.getName() + " (id=" + itemToEdit.getId() + ")";
+      String title = "Edit Item " + itemToEdit.getName();
       model.addAttribute("title", title);
       try {
         Map<String, Object> weatherData = weatherService.fetchWeatherData();
