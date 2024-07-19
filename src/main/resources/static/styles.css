@@ -1,8 +1,9 @@
+/*
 body {
     font-size: 12px;
     background: url("https://images.squarespace-cdn.com/content/v1/59626a54e58c62cb702f966f/1499623836791-UGLPE1RTFE0VSRTY4HC1/LightMild_Slice+%281+of+3%29.jpg?format=1500w");
      background-attachment: fixed;
-    font-family: Arial,Helvetica,sans-serif;
+    font-family: Monsterrat,Arial,sans-serif;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
@@ -14,9 +15,13 @@ body {
 width: 100%;}
 .item-container {
 
-            margin: 1rem; /* Optional: Add space between containers */
+            margin: 1rem; */
+/* Optional: Add space between containers *//*
+
             border-radius: 10px;
-            padding: 10px; /* Optional: Add padding inside the container */
+            padding: 10px; */
+/* Optional: Add padding inside the container *//*
+
             background:rgba(255, 255, 255, 0.5)  url("https://www.frenchpaper.com/cdn/shop/products/KRAFT-TONE_Index_Off-White_Kraft_100C_01_400x.jpg?v=1624629595");
             display: inline-block;
             box-sizing: border-box;
@@ -29,7 +34,9 @@ width: 100%;}
                 height: auto;
                 display: block;
                 margin-top: 5px;
-                border-radius: 10px; /* Add border-radius for rounded corners */
+                border-radius: 10px; */
+/* Add border-radius for rounded corners *//*
+
                 align-items: center;
             }
 #openweathermap-widget-22 {
@@ -39,13 +46,17 @@ align: right;
 color: white;
 }
 .nav {
-    background-color: #89CFF0;
+    background-color: #3f415e;
     position: relative;
     opacity: 0.8;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    h1 {
+    color: ghostwhite;
+    font-family: Monsterrat, Arial;
+    }
 }
 
 .nav ul {
@@ -62,7 +73,7 @@ color: white;
 }
 
 .nav .nav-link li:hover {
-color: #6495ED;
+color: #305fa6;
 }
 
 .nav img {
@@ -79,19 +90,31 @@ margin-left 1rem;}
     }
 
     .nav .nav-link a {
-        text-decoration: none; /* Remove underlines from links */
+        text-decoration: none; */
+/* Remove underlines from links *//*
+
         color: #F8F8FF;
-        margin: 0 10px; /* Adjust as needed */
-        padding: 5px; /* Adjust as needed */
+        margin: 0 10px; */
+/* Adjust as needed *//*
+
+        padding: 5px; */
+/* Adjust as needed *//*
+
     }
 
 
 
 img {
             max-width: 200px;
-            height: auto; /* Maintain aspect ratio */
-            display: block; /* Avoid unwanted space below image */
-            margin-top: 5px; /* Add margin for spacing */
+            height: auto; */
+/* Maintain aspect ratio *//*
+
+            display: block; */
+/* Avoid unwanted space below image *//*
+
+            margin-top: 5px; */
+/* Add margin for spacing *//*
+
         }
 
 label {
@@ -113,7 +136,9 @@ border-radius: 1rem;
 .search-form input {
     border-radius: 1rem;
     padding: 0.5rem;
-    margin-right: 5px; /* Optional: Add some spacing between input and button */
+    margin-right: 5px; */
+/* Optional: Add some spacing between input and button *//*
+
 }
 
 .search-form button {
@@ -122,8 +147,12 @@ border-radius: 1rem;
 }
 
 .item-details p {
-    padding: 5px; /* Adjust padding as needed */
-    margin: 0; /* Remove default margin */
+    padding: 5px; */
+/* Adjust padding as needed *//*
+
+    margin: 0; */
+/* Remove default margin *//*
+
     color: #191970;
 }
 
@@ -161,7 +190,9 @@ text-align: center;
 margin-top: 1 rem;
 }
 .form-group label {
-    margin-bottom: 0.5rem; /* Adjust the margin as needed */
+    margin-bottom: 0.5rem; */
+/* Adjust the margin as needed *//*
+
 }
 
 .item-actions {
@@ -175,16 +206,26 @@ width: 2rem;
 height: auto;}
 
 .item-container:hover {
-    transform: scale(1.05); /* Increase size by 5% */
-    box-shadow: 0 8px 16px rgba(0,0, 0, 0.9); /* Add a shadow for the glow effect */
+    transform: scale(1.05); */
+/* Increase size by 5% *//*
+
+    box-shadow: 0 8px 16px rgba(0,0, 0, 0.9); */
+/* Add a shadow for the glow effect *//*
+
     transition: transform 0.3s, box-shadow 0.3s;
-    border: none;/* Smooth transition */
+    border: none;*/
+/* Smooth transition *//*
+
 }
 
 .item-container.edit-create-page:hover {
-    transform: none; /* Reset transform for edit or create page */
+    transform: none; */
+/* Reset transform for edit or create page *//*
+
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    transition: none; /* Reset transition for edit or create page */
+    transition: none; */
+/* Reset transition for edit or create page *//*
+
 }
 
 
@@ -200,7 +241,7 @@ color: #F8F8FF;
 }
 
 .col-md-2 .nav-link:hover {
-color: #6495ED;
+color: #305fa6;
 }
 
 .col-md-10 {
@@ -218,14 +259,25 @@ text-align: left;
 margin-top: 1rem;
 }
 
+.create-category-form {
+        background:rgba(255, 255, 255, 0.5)  url("https://www.frenchpaper.com/cdn/shop/products/KRAFT-TONE_Index_Off-White_Kraft_100C_01_400x.jpg?v=1624629595");
+}
 
+.weather-container p {
+            color: ghostwhite;
+            font-family:Monsterrat,Arial;
+        }
 
 
 
 @media only screen and (min-width: 600px) {
-    /* Adjust styles for screens larger than 600 pixels wide */
+    */
+/* Adjust styles for screens larger than 600 pixels wide *//*
+
     .item-container {
-        max-width: 30%; /* Adjust as needed */
+        max-width: 30%; */
+/* Adjust as needed *//*
+
     }
 
     .nav ul {
@@ -245,4 +297,4 @@ margin-top: 1rem;
     .nav img {
             margin-right: 20px;
         }
-}
+}*/

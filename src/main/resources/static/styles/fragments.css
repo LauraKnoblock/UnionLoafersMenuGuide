@@ -1,0 +1,75 @@
+/* Global Styles for Fragments */
+body {
+    font-family: Montserrat, Arial, sans-serif;
+    background: url("https://images.squarespace-cdn.com/content/v1/59626a54e58c62cb702f966f/1499623836791-UGLPE1RTFE0VSRTY4HC1/LightMild_Slice+%281+of+3%29.jpg?format=1500w");
+    background-attachment: fixed;
+    backdrop-filter: blur(5px);
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+}
+
+.nav {
+    background-color: #3f415e;
+    position: relative;
+    opacity: 0.8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.nav img {
+    margin-left: 20px;
+    max-width: 100px;
+}
+
+.nav h1 {
+    color: ghostwhite;
+    font-family: Montserrat, Arial;
+    margin-top: 3rem;
+    margin-left: 1rem;
+}
+
+.nav .nav-link {
+    list-style: none;
+    margin-top: 1rem;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.nav .nav-link a {
+    text-decoration: none;
+    color: #F8F8FF;
+    margin: 0 10px;
+    padding: 5px;
+}
+
+.nav .nav-link a:hover {
+    color: #305fa6;
+}
+.col-md-2 {
+color: #F8F8FF;
+font-size: 18px;
+opacity: 80%;
+}
+
+.col-md-2 .nav-link {
+color: #F8F8FF;
+}
+
+.col-md-2 .nav-link:hover {
+color: #305fa6;
+}
+
+.weather-container p {
+    color: ghostwhite;
+    font-family: Montserrat, Arial;
+}
+
+.weather-container img {
+    max-width: 100px;
+    height: auto;
+}

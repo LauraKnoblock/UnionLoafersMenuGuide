@@ -139,7 +139,6 @@ public class ItemController {
       model.addAttribute("title", "Delete Item " + itemToDelete.getName());
       return "items/delete";
     } else {
-      // Handle the case where the item with the given ID is not found
       return "redirect:/items";
     }
   }

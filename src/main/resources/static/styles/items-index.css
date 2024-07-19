@@ -1,0 +1,104 @@
+/* Global Styles for Index Page */
+/*body {
+    font-family: Montserrat, Arial, sans-serif;
+    background: url("https://images.squarespace-cdn.com/content/v1/59626a54e58c62cb702f966f/1499623836791-UGLPE1RTFE0VSRTY4HC1/LightMild_Slice+%281+of+3%29.jpg?format=1500w");
+    background-attachment: fixed;
+    backdrop-filter: blur(5px);
+    margin: 0;
+}
+
+.container-fluid {
+    padding: 1rem;
+}*/
+
+/* Header Styling */
+h1 {
+    color: #F8F8FF;
+    text-shadow: 2px 2px 4px rgba(0,0,0, 0.3);
+    text-align: center;
+}
+
+/* Navigation Styling */
+.nav {
+    background-color: #3f415e;
+    opacity: 0.8;
+    padding: 10px;
+}
+
+.nav h3 {
+    color: ghostwhite;
+}
+
+.nav .nav-link {
+    text-decoration: none;
+    color: #F8F8FF;
+}
+
+.nav .nav-link:hover {
+    color: #305fa6;
+}
+
+/* Search Form Styling */
+.search-form {
+    margin-top: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.search-form input {
+    border-radius: 1rem;
+    padding: 0.5rem;
+    margin-right: 5px;
+}
+
+.search-form button {
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+/* Item Container Styling */
+/* Container holding the items */
+.item-list {
+    display: inline-block;
+    /* Allows items to wrap to the next line */
+    gap: 1rem; /* Adjust spacing between items */
+    justify-content: space-between; /* Distribute items evenly */
+}
+
+.item-container {
+    border-radius: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5) url("https://www.frenchpaper.com/cdn/shop/products/KRAFT-TONE_Index_Off-White_Kraft_100C_01_400x.jpg?v=1624629595");
+    display: inline-block; /* Flex is preferred for layout */
+    box-sizing: border-box;
+    max-width: 20rem; /* Adjust width as needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    opacity: 0.8;
+    margin: 1rem;
+    font-size: .75rem;
+}
+          .item-container img {
+              max-width: 100%; /* Make sure images fit within the container */
+              height: auto;
+              display: block;
+              margin-top: 5px;
+              border-radius: 10px;
+          }
+
+.item-details p {
+    padding: 5px;
+    margin: 0;
+    color: #191970;
+    max-width: 100%;
+}
+
+.item-actions a {
+    text-decoration: none;
+}
+
+.vegan-icon {
+    width: 2rem;
+    height: auto;
+}
+
+

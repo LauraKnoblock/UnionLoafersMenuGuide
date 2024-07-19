@@ -54,6 +54,13 @@ public class ItemCategoryController {
   public String displayCreateItemForm(Model model) {
     model.addAttribute("title", "Create Category");
     model.addAttribute(new ItemCategory());
+    try {
+      Map<String, Object> weatherData = weatherService.fetchWeatherData();
+      model.addAttribute("weatherData", weatherData);
+    } catch (IOException | InterruptedException e) {
+      model.addAttribute("weatherData", new HashMap<>()); // Provide empty data or default values
+      e.printStackTrace();
+    }
     return "itemCategories/create";
   }
 
@@ -65,8 +72,7 @@ public class ItemCategoryController {
       model.addAttribute(new ItemCategory());
       return "itemCategories/create";
     }
-
     itemCategoryRepository.save(itemCategory);
-    return "redirect:";
+    return "redirect:/items";
   }
 }

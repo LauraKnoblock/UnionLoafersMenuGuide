@@ -14,7 +14,7 @@
 </div>
 <div class="item-container edit-create-page mx-auto">
     <div class="d-flex justify-content-center align-items-center">
-        <form method="post" action="/items/create" class="row gy-2">
+        <form method="post" action="/items/create" class="row gy-2" >
             <div class="col-md-8">
                 <input type="text" name="name" class="form-control" placeholder="Name">
             </div>
@@ -44,7 +44,7 @@
             </div>
             <div class="col-md-8">
                 <input type="text" name="image" class="form-control" placeholder="Paste Image URL here">
-                <img th:if="${item.image}" th:src="${item.image}" alt="Item Image">
+                <img th:if="${item.image}" th:src="${item.image}" alt="Item Image" >
             </div>
             <div class="col-md-12">
                 <input type="submit" value="Create Item" class="btn btn-success">
