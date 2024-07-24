@@ -1,5 +1,7 @@
 package com.UnionLoafers.MenuGuide.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class PasswordController {
 
-  private static final String SECRET_PASSWORD = "isTeddyhere?"; // Replace with your actual secret password
+  private final String secretPassword;
+
+  @Autowired
+  public PasswordController(Environment env) {
+    this.secretPassword = env.getProperty("secret.password");
+  }
+
 
   @GetMapping("/password-entry")
   public String passwordEntry(@RequestParam String redirectUrl, Model model) {
@@ -19,7 +27,7 @@ public class PasswordController {
 
   @PostMapping("/verify-password")
   public String verifyPassword(@RequestParam String password, @RequestParam String redirectUrl, Model model) {
-    if (SECRET_PASSWORD.equals(password)) {
+    if (secretPassword.equals(password)) {
       return "redirect:" + redirectUrl;
     } else {
       model.addAttribute("error", true);

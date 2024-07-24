@@ -10,19 +10,14 @@
     <link th:href="@{/styles/fragments.css}" rel="stylesheet">
 </head>
 <body class="container">
-<nav th:fragment="navigation" class="nav">
+<nav id="top-nav" th:fragment="navigation" class="nav nav-top-animated">
     <li>
         <a href="/">
             <img class="logo" src="https://images.squarespace-cdn.com/content/v1/59626a54e58c62cb702f966f/1550516597840-RQUDC10WZ33QFTLH6UAZ/Seal_blue.png?format=100w" alt="Logo">
         </a>
     </li>
     <h1>Union Loafers Menu Guide</h1>
-    <div class="nav-links">
-        <li class="nav-link"><a href="/items"> All Items</a></li>
-        <li class="nav-link">
-            <a th:href="@{/password-entry(redirectUrl='/items/create')}">Create Item</a>
-        </li>
-    </div>
+
     <div class="weather-container">
         <img th:src="'https://openweathermap.org/img/wn/' + ${weatherData.current.weather[0].icon} + '@2x.png'" alt="Weather Icon" />
         <p>Currently: <span th:text="${weatherData.current.weather[0].description}"></span></p>
@@ -32,5 +27,7 @@
         <p th:if="${weatherData.current.weather[0].description.contains('rain')}">Check with MOD for patio setup.</p>
     </div>
 </nav>
+
+
 </body>
 </html>

@@ -1,0 +1,10 @@
+.item-container {
+    border-radius: 10px;
+    padding: 2rem 0; /* 2rem padding for top and bottom, 0 for left and right */
+    background: rgba(255, 255, 255, 0.5) url("https://www.frenchpaper.com/cdn/shop/products/KRAFT-TONE_Index_Off-White_Kraft_100C_01_400x.jpg?v=1624629595");
+    max-width: 40rem; /* Adjust width as needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    opacity: 0.8;
+    margin: 1rem auto; /* Center the container horizontally with margin auto */
+    font-size: .75rem;
+}

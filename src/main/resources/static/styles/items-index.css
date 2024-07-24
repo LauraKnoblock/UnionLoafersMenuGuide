@@ -93,6 +93,10 @@ h1 {
     max-width: 100%;
 }
 
+.item-actions {
+    margin-top: 1rem;
+}
+
 .item-actions a {
     text-decoration: none;
 }
@@ -100,6 +104,10 @@ h1 {
 .vegan-icon {
     width: 2rem;
     height: auto;
+}
+
+.edit-button {
+   padding: 1rem;
 }
 
 

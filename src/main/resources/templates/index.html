@@ -13,9 +13,15 @@
     <div class="col-md-2">
         <nav th:fragment="leftNavigation">
             <ul class="nav flex-column">
+
+                <li class="nav-link items-link"><a href="/items"> All Items</a>
                 <h3>Categories</h3>
                 <li class="nav-item" th:each="category : ${categories}">
                     <a class="nav-link" th:text="${category.name}" th:href="'/items?categoryId=' + ${category.id}"></a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/itemCategories/create">Create Category</a></li>
+                <li class="nav-link">
+                    <a th:href="@{/password-entry(redirectUrl='/items/create')}">Create Item</a>
                 </li>
             </ul>
         </nav>

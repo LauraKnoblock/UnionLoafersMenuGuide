@@ -2,22 +2,17 @@ package com.UnionLoafers.MenuGuide.controllers;
 
 
 import com.UnionLoafers.MenuGuide.data.ItemCategoryRepository;
-import com.UnionLoafers.MenuGuide.data.ItemData;
 import com.UnionLoafers.MenuGuide.data.ItemRepository;
 import com.UnionLoafers.MenuGuide.models.Item;
 import com.UnionLoafers.MenuGuide.models.ItemCategory;
 import com.UnionLoafers.MenuGuide.models.WeatherService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+
 import java.util.*;
 
 @Controller
@@ -35,7 +30,6 @@ public class ItemController {
 
   @Autowired
   private ItemCategoryRepository itemCategoryRepository;
-// findAll, save, findById
 
 
 
@@ -54,7 +48,7 @@ public class ItemController {
       model.addAttribute("weatherData", weatherData);
     }
     catch (IOException | InterruptedException e) {
-      model.addAttribute("weatherData", new HashMap<>()); // Provide empty data or default values
+      model.addAttribute("weatherData", new HashMap<>());
       e.printStackTrace();
     }
     return "index";
@@ -70,21 +64,19 @@ public class ItemController {
       model.addAttribute("title", "All Items");
 
       if (search != null && !search.isEmpty()) {
-        // If search query is present, filter items based on the search query
         items = itemRepository.findItemsByNameContainingIgnoreCaseOrDescContainingIgnoreCaseOrIngredientsContainingIgnoreCase(search, search, search);
         model.addAttribute("title", "Search Results for: " + search);
       } else {
-        // If no search query, get all items
         items = (List<Item>) itemRepository.findAll();
       }
     } else {
       Optional<ItemCategory> result = itemCategoryRepository.findById(categoryId);
       if (result.isEmpty()) {
         model.addAttribute("title", "Invalid Category ID: " + categoryId);
-        items = Collections.emptyList(); // Set an empty list if category is invalid
+        items = Collections.emptyList();
       } else {
         ItemCategory category = result.get();
-        model.addAttribute("title", "Items in category: " + category.getName());
+        model.addAttribute("title", "Items in " + category.getName() + " Category");
         items = category.getItems();
       }
     }
@@ -94,11 +86,11 @@ public class ItemController {
     try {
       Map<String, Object> weatherData = weatherService.fetchWeatherData();
       model.addAttribute("weatherData", weatherData);
-    }
-    catch (IOException | InterruptedException e) {
-      model.addAttribute("weatherData", new HashMap<>()); // Provide empty data or default values
+    } catch (IOException | InterruptedException e) {
+      model.addAttribute("weatherData", new HashMap<>());
       e.printStackTrace();
     }
+
     return "items/index";
   }
 
@@ -112,7 +104,7 @@ public class ItemController {
       model.addAttribute("weatherData", weatherData);
     }
     catch (IOException | InterruptedException e) {
-      model.addAttribute("weatherData", new HashMap<>()); // Provide empty data or default values
+      model.addAttribute("weatherData", new HashMap<>());
       e.printStackTrace();
     }
     return "items/create";
@@ -123,7 +115,7 @@ public class ItemController {
     if (newItem.getItemCategory() == null || newItem.getItemCategory().isEmpty()
             || newItem.getItemCategory().equals("Choose a Category...")) {
       model.addAttribute("categoryError", "Please choose a category for the item.");
-      return "redirect:/items/create"; // Redirect back to the form with error
+      return "redirect:/items/create";
     }
     itemRepository.save(newItem);
     return "redirect:/items";
@@ -132,7 +124,6 @@ public class ItemController {
   @GetMapping("delete/{itemId}")
   public String displayDeleteItemForm(Model model, @PathVariable int itemId) {
     Optional<Item> optionalItem = itemRepository.findById(itemId);
-
     if (optionalItem.isPresent()) {
       Item itemToDelete = optionalItem.get();
       model.addAttribute("item", itemToDelete);
@@ -150,7 +141,7 @@ public class ItemController {
       model.addAttribute("weatherData", weatherData);
     }
     catch (IOException | InterruptedException e) {
-      model.addAttribute("weatherData", new HashMap<>()); // Provide empty data or default values
+      model.addAttribute("weatherData", new HashMap<>());
       e.printStackTrace();
     }
     itemRepository.deleteById(itemId);
@@ -161,20 +152,22 @@ public class ItemController {
   @GetMapping("edit/{itemId}")
   public String displayEditForm(Model model, @PathVariable int itemId) {
     Optional<Item> optionalItem = itemRepository.findById(itemId);
-    List<ItemCategory> categories = new ArrayList<>((Collection) itemCategoryRepository.findAll());    if (optionalItem.isPresent()) {
+    List<ItemCategory> categories = new ArrayList<>((Collection) itemCategoryRepository.findAll());
+    if (optionalItem.isPresent()) {
       Item itemToEdit = optionalItem.get();
 
       model.addAttribute("item", itemToEdit);
-      model.addAttribute("itemId", itemId);
+//      model.addAttribute("itemId", itemId);
       model.addAttribute("categories", categories);
       String title = "Edit Item " + itemToEdit.getName();
       model.addAttribute("title", title);
+
       try {
         Map<String, Object> weatherData = weatherService.fetchWeatherData();
         model.addAttribute("weatherData", weatherData);
       }
       catch (IOException | InterruptedException e) {
-        model.addAttribute("weatherData", new HashMap<>()); // Provide empty data or default values
+        model.addAttribute("weatherData", new HashMap<>());
         e.printStackTrace();
       }
 
@@ -201,15 +194,16 @@ public class ItemController {
       itemToEdit.setDesc(desc);
       itemToEdit.setImage(image);
       itemToEdit.setIngredients(ingredients);
-      itemToEdit.setVegan(vegan != null ? vegan.trim() : null);
+      itemToEdit.setVegan(vegan);
 
-      // Update the item category if the selected itemCategoryId is not null
       if (itemCategoryId != null) {
         Optional<ItemCategory> optionalCategory = itemCategoryRepository.findById(itemCategoryId);
-        optionalCategory.ifPresent(itemToEdit::setItemCategory);
+        if (optionalCategory.isPresent()) {
+          ItemCategory category = optionalCategory.get();
+          itemToEdit.setItemCategory(category);
+        }
       }
 
-      // Save the changes back to the database
       itemRepository.save(itemToEdit);
     }
 

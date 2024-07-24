@@ -31,34 +31,15 @@ public class ItemCategoryController {
   private ItemCategoryRepository itemCategoryRepository;
 
 
-  @GetMapping
-  public String  displayAllItems(Model model) {
-    model.addAttribute("title", "All Categories");
-    model.addAttribute("categories", itemCategoryRepository.findAll());
-
-    try {
-      Map<String, Object> weatherData = weatherService.fetchWeatherData();
-      model.addAttribute("weatherData", weatherData);
-    }
-    catch (IOException | InterruptedException e) {
-      model.addAttribute("weatherData", new HashMap<>()); // Provide empty data or default values
-      e.printStackTrace();
-    }
-
-    return "itemCategories/index";
-  }
-
-
-
   @GetMapping("/create")
-  public String displayCreateItemForm(Model model) {
+  public String displayCreateItemCategoryForm(Model model) {
     model.addAttribute("title", "Create Category");
     model.addAttribute(new ItemCategory());
     try {
       Map<String, Object> weatherData = weatherService.fetchWeatherData();
       model.addAttribute("weatherData", weatherData);
     } catch (IOException | InterruptedException e) {
-      model.addAttribute("weatherData", new HashMap<>()); // Provide empty data or default values
+      model.addAttribute("weatherData", new HashMap<>());
       e.printStackTrace();
     }
     return "itemCategories/create";

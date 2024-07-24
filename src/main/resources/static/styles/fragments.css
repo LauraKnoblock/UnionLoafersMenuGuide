@@ -10,6 +10,7 @@
         opacity: 1;
     }
 }
+
 body {
     font-family: Montserrat, Arial, sans-serif;
     background: url("https://images.squarespace-cdn.com/content/v1/59626a54e58c62cb702f966f/1499623836791-UGLPE1RTFE0VSRTY4HC1/LightMild_Slice+%281+of+3%29.jpg?format=1500w");
@@ -30,6 +31,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    flex-wrap: wrap; /* Allows wrapping for smaller screens */
 }
 
 .nav img {
@@ -67,7 +69,7 @@ body {
     text-shadow: 2px 2px 4px rgba(0,0,0, 0.3);
     text-align: center;
     margin-top: 2rem;
-     animation: dropIn 1s ease-out; /* Apply the animation */
+    animation: dropIn 1s ease-out; /* Apply the animation */
 }
 
 h1 {
@@ -75,27 +77,54 @@ h1 {
     text-shadow: 2px 2px 4px rgba(0,0,0, 0.3);
     text-align: center;
 }
+
 .col-md-2 {
-color: #F8F8FF;
-font-size: 18px;
-opacity: 80%;
-margin-top: -5.5rem;
+    color: #F8F8FF;
+    font-size: 18px;
+    opacity: 80%;
+    margin-top: -5.5rem;
 }
 
 .col-md-2 .nav-link {
-color: #F8F8FF;
+    color: #F8F8FF;
 }
 
 .col-md-2 .nav-link:hover {
-color: #305fa6;
+    color: #305fa6;
+}
+
+.weather-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align to the right */
+    color: ghostwhite;
+    font-family: Montserrat, Arial;
+    margin-right: 20px; /* Adds space to the right edge */
 }
 
 .weather-container p {
-    color: ghostwhite;
-    font-family: Montserrat, Arial;
+    margin: 0;
 }
 
 .weather-container img {
     max-width: 100px;
     height: auto;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column; /* Stacks items vertically */
+        align-items: center;
+    }
+
+    .weather-container {
+        align-items: center; /* Center align on smaller screens */
+        margin-right: 0;
+    }
+
+    .nav h1 {
+        margin-top: 1rem;
+        margin-left: 0;
+    }
 }

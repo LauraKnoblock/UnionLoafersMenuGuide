@@ -43,7 +43,6 @@ public class ItemCategory extends AbstractEntity {
 
 
   public boolean isEmpty() {
-    // Check if the name is null or an empty string after trimming
     return name == null || name.trim().isEmpty();
   }
 }
